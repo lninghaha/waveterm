@@ -2,6 +2,8 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { Button } from "@/app/element/button";
+import { t } from "@/app/i18n/core";
+import { useT } from "@/app/i18n/use-i18n";
 import {
     MetaKeyAtomFnType,
     WaveEnv,
@@ -212,10 +214,11 @@ export const Input = React.memo(
 
 export const OptMagnifyButton = React.memo(
     ({ magnified, toggleMagnify, disabled }: { magnified: boolean; toggleMagnify: () => void; disabled: boolean }) => {
+        const t = useT();
         const magnifyDecl: IconButtonDecl = {
             elemtype: "iconbutton",
             icon: <MagnifyIcon enabled={magnified} />,
-            title: magnified ? "Minimize" : "Magnify",
+            title: magnified ? t("Minimize") : t("Magnify"),
             click: toggleMagnify,
             disabled,
         };
