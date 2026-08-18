@@ -1,8 +1,8 @@
 # Build unsigned Windows x64 NSIS installer for the zh-CN soft-fork.
-# Uploads the .exe as a workflow artifact and, on tags, attaches it to the GitHub Release.
+# Uploads the .exe as a workflow artifact and attaches it to a GitHub Release when possible.
 
 name: Build Windows x64
-run-name: Windows x64 ${{ github.ref_name }}${{ github.event_name == 'workflow_dispatch' && ' (manual)' || '' }}
+run-name: Windows x64 ${{ inputs.release_tag || github.ref_name }}${{ github.event_name == 'workflow_dispatch' && ' (manual)' || '' }}
 
 on:
     push:
@@ -11,10 +11,11 @@ on:
             - "v*-zhcn*"
     workflow_dispatch:
         inputs:
-            upload_to_release:
-                description: "Attach .exe to an existing GitHub Release for this ref (tag only)"
-                type: boolean
-                default: true
+            release_tag:
+                description: "Optional existing release tag to attach the .exe to (e.g. v0.14.5-zhCN.1). Leave empty to only upload an Actions artifact."
+                type: string
+                required: false
+                default: ""
 
 env:
     GO_VERSION: "1.25.6"
@@ -90,11 +91,17 @@ jobs:
                   path: make/*.exe
                   if-no-files-found: error
 
-            - name: Attach .exe to GitHub Release
-              if: >
-                  startsWith(github.ref, 'refs/tags/') &&
-                  (github.event_name == 'push' || inputs.upload_to_release)
+            - name: Attach .exe to GitHub Release (tag push)
+              if: startsWith(github.ref, 'refs/tags/')
               uses: softprops/action-gh-release@v2
               with:
+                  files: make/*.exe
+                  fail_on_unmatched_files: true
+
+            - name: Attach .exe to GitHub Release (manual tag)
+              if: github.event_name == 'workflow_dispatch' && inputs.release_tag != ''
+              uses: softprops/action-gh-release@v2
+              with:
+                  tag_name: ${{ inputs.release_tag }}
                   files: make/*.exe
                   fail_on_unmatched_files: true
