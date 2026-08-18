@@ -23,21 +23,23 @@ git push --force-with-lease origin i18n/zh-CN
 
 ## 首版（已切）
 
-- 版本：`0.14.5-zhCN.1`（基于上游 `0.14.5`）
+- 版本：`0.14.5-zhCN.2`（基于上游 `0.14.5`；`.1` 起与官方 Wave 隔离 identity）
 - 分支 tip：`i18n/zh-CN`
-- 标签：`v0.14.5-zhCN.1`
+- 标签：`v0.14.5-zhCN.2`
 - 覆盖：阶段 1–3（日常主路径、高频右键/预览、远程确认与展示名）
 - locale：约 569 keys，`en` / `zh-CN` 对齐
 - 默认语言：`app:language` = `zh-CN`
+- 产品身份：`productName=Wave ZH`，`appId=dev.lninghaha.waveterm.zhcn`，数据目录 `waveterm-zhcn`（不与官方 Wave 抢 `wave.lock`）
 
 ### Windows x64 安装包（推荐：GitHub Actions）
 
 仓库已加 workflow：`.github/workflows/build-windows-x64.yml`。
 
-- 推送匹配 `v*-zhCN*` 的 tag 会自动在 `windows-latest` 打 **未签名** NSIS `.exe`，并挂到对应 GitHub Release。
+- 推送匹配 `v*-zhCN*` 的 tag 会自动在 `windows-latest` 打 **未签名** NSIS + portable `.exe`，并挂到对应 GitHub Release。
 - 也可在 Actions 页手动 **Run workflow**（`Build Windows x64`）。
-- 产物名大致：`Wave-win-x64-<version>.exe`（见 `electron-builder` artifactName）。
-- 无 DigiCert 密钥，安装时 Windows SmartScreen 可能提示「未知发布者」，选仍要运行即可。
+- 产物大致：`Wave ZH-win32-x64-<version>.exe`（安装包）与 `…-portable.exe`（免安装）。
+- 无 DigiCert 密钥。若双击无反应：右键 exe → 属性 → 勾选「解除锁定」→ 应用；或点 SmartScreen「更多信息」→「仍要运行」。
+- 可与官方 Wave **同时安装**；请先关掉正在运行的官方 Wave 再试首启。
 
 本地打包（需 Node 22、Go、Task、Zig）：
 
@@ -45,7 +47,7 @@ git push --force-with-lease origin i18n/zh-CN
 git checkout i18n/zh-CN
 git pull
 task init
-task package -- --win nsis --x64   # 产物在 make/
+task package -- --win nsis portable --x64   # 产物在 make/
 ```
 
 ## 现状（已完成）

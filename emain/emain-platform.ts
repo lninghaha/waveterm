@@ -11,11 +11,17 @@ import path from "path";
 import { WaveDevVarName, WaveDevViteVarName } from "../frontend/util/isdev";
 import * as keyutil from "../frontend/util/keyutil";
 
+// Soft-fork identity: keep data/locks/install dirs separate from upstream Wave.
+// Upstream uses "waveterm" / appId "dev.commandline.waveterm". Sharing those causes
+// silent exits when the official app already holds wave.lock (common "double-click does nothing").
+const SoftForkDirName = "waveterm-zhcn";
+const SoftForkDisplayName = "Wave ZH";
+
 // This is a little trick to ensure that Electron puts all its runtime data into a subdirectory to avoid conflicts with our own data.
-// On macOS, it will store to ~/Library/Application \Support/waveterm/electron
-// On Linux, it will store to ~/.config/waveterm/electron
-// On Windows, it will store to %LOCALAPPDATA%/waveterm/electron
-app.setName("waveterm/electron");
+// On macOS, it will store to ~/Library/Application Support/waveterm-zhcn/electron
+// On Linux, it will store to ~/.config/waveterm-zhcn/electron
+// On Windows, it will store to %LOCALAPPDATA%/waveterm-zhcn/electron
+app.setName(`${SoftForkDirName}/electron`);
 
 const isDev = !app.isPackaged;
 const isDevVite = isDev && process.env.ELECTRON_RENDERER_URL;
@@ -27,13 +33,13 @@ if (isDevVite) {
     process.env[WaveDevViteVarName] = "1";
 }
 
-const waveDirNamePrefix = "waveterm";
+const waveDirNamePrefix = SoftForkDirName;
 const waveDirNameSuffix = isDev ? "dev" : "";
 const waveDirName = `${waveDirNamePrefix}${waveDirNameSuffix ? `-${waveDirNameSuffix}` : ""}`;
 
-const paths = envPaths("waveterm", { suffix: waveDirNameSuffix });
+const paths = envPaths(SoftForkDirName, { suffix: waveDirNameSuffix });
 
-app.setName(isDev ? "Wave (Dev)" : "Wave");
+app.setName(isDev ? `${SoftForkDisplayName} (Dev)` : SoftForkDisplayName);
 const unamePlatform = process.platform;
 const unameArch: string = process.arch;
 keyutil.setKeyUtilPlatform(unamePlatform);

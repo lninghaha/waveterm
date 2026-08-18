@@ -207,9 +207,10 @@ func EnsureWavePresetsDir() error {
 
 func resolveWaveCachesDir() string {
 	var cacheDir string
-	appBundle := "waveterm"
+	// Soft-fork: keep cache separate from upstream "waveterm" / "waveterm-dev".
+	appBundle := "waveterm-zhcn"
 	if IsDevMode() {
-		appBundle = "waveterm-dev"
+		appBundle = "waveterm-zhcn-dev"
 	}
 
 	switch runtime.GOOS {

@@ -72,8 +72,8 @@ jobs:
             - name: Install FPM
               run: gem install fpm
 
-            - name: Build Windows x64 NSIS
-              run: task package -- --win nsis --x64
+            - name: Build Windows x64 NSIS + portable
+              run: task package -- --win nsis portable --x64
               env:
                   USE_SYSTEM_FPM: true
                   # Fork has no DigiCert / Authenticode secrets; unsigned installer is fine for self-use.
@@ -84,21 +84,22 @@ jobs:
               run: Get-ChildItem -Path make -ErrorAction SilentlyContinue | Format-Table Name, Length
               shell: powershell
 
-            - name: Upload .exe artifact
+            - name: Upload Windows artifacts
               uses: actions/upload-artifact@v5
               with:
-                  name: windows-x64-nsis
-                  path: make/*.exe
+                  name: windows-x64
+                  path: |
+                      make/*.exe
                   if-no-files-found: error
 
-            - name: Attach .exe to GitHub Release (tag push)
+            - name: Attach artifacts to GitHub Release (tag push)
               if: startsWith(github.ref, 'refs/tags/')
               uses: softprops/action-gh-release@v2
               with:
                   files: make/*.exe
                   fail_on_unmatched_files: true
 
-            - name: Attach .exe to GitHub Release (manual tag)
+            - name: Attach artifacts to GitHub Release (manual tag)
               if: github.event_name == 'workflow_dispatch' && inputs.release_tag != ''
               uses: softprops/action-gh-release@v2
               with:

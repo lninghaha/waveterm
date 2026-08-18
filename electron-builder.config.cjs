@@ -96,13 +96,26 @@ const config = {
         afterInstall: "build/deb-postinstall.tpl",
     },
     win: {
-        target: ["nsis", "msi", "zip"],
+        target: ["nsis", "msi", "zip", "portable"],
+        // Distinct from upstream so Windows Start Menu / AppUserModelID do not collide.
+        executableName: pkg.productName,
         signtoolOptions: windowsShouldSign && {
             signingHashAlgorithms: ["sha256"],
             publisherName: "Command Line Inc",
             certificateSubjectName: "Command Line Inc",
             certificateSha1: process.env.SM_CODE_SIGNING_CERT_SHA1_HASH,
         },
+    },
+    nsis: {
+        oneClick: false,
+        allowToChangeInstallationDirectory: true,
+        shortcutName: pkg.productName,
+        uninstallDisplayName: pkg.productName,
+        createDesktopShortcut: true,
+        createStartMenuShortcut: true,
+    },
+    portable: {
+        artifactName: "${productName}-${platform}-${arch}-${version}-portable.${ext}",
     },
     appImage: {
         license: "LICENSE",
