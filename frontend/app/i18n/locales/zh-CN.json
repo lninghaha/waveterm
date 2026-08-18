@@ -552,5 +552,20 @@
     "Automatically install for all connections": "为所有连接自动安装",
     "Install wsh": "安装 wsh",
     "No wsh": "不安装 wsh",
-    "{{title}} ({{seconds}}s)": "{{title}}（{{seconds}}秒）"
+    "{{title}} ({{seconds}}s)": "{{title}}（{{seconds}}秒）",
+    "terminal": "终端",
+    "files": "文件",
+    "web": "网页",
+    "sysinfo": "系统信息",
+    "processes": "进程",
+    "Quick": "快速",
+    "Balanced": "均衡",
+    "Deep": "深度",
+    "Builder Default": "Builder 默认",
+    "Builder Deep": "Builder 深度",
+    "Fastest responses (gpt-5-mini)": "响应最快（gpt-5-mini）",
+    "Good mix of speed and accuracy\n(gpt-5.1 with minimal thinking)": "速度与准确度均衡\n（gpt-5.1，轻度思考）",
+    "Slower but most capable\n(gpt-5.1 with full reasoning)": "更慢但能力最强\n（gpt-5.1，完整推理）",
+    "Good mix of speed and accuracy\n(gpt-5.4 with minimal thinking)": "速度与准确度均衡\n（gpt-5.4，轻度思考）",
+    "Slower but most capable\n(gpt-5.4 with full reasoning)": "更慢但能力最强\n（gpt-5.4，完整推理）"
 }

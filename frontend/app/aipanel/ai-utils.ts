@@ -589,7 +589,7 @@ export const getFilteredAIModeConfigs = (
  */
 export function getModeDisplayName(config: AIModeConfigType): string {
     if (config["display:name"]) {
-        return config["display:name"];
+        return t(config["display:name"]);
     }
 
     const provider = config["ai:provider"];

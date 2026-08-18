@@ -48,7 +48,7 @@ const AIModeMenuItem = memo(({ config, isSelected, isDisabled, isPremiumDisabled
                     className={cn("text-xs pl-5", isDisabled ? "text-gray-500" : "text-muted")}
                     style={{ whiteSpace: "pre-line" }}
                 >
-                    {config["display:description"]}
+                    {t(config["display:description"])}
                 </div>
             )}
         </button>

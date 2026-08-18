@@ -552,5 +552,20 @@
     "Automatically install for all connections": "Automatically install for all connections",
     "Install wsh": "Install wsh",
     "No wsh": "No wsh",
-    "{{title}} ({{seconds}}s)": "{{title}} ({{seconds}}s)"
+    "{{title}} ({{seconds}}s)": "{{title}} ({{seconds}}s)",
+    "terminal": "terminal",
+    "files": "files",
+    "web": "web",
+    "sysinfo": "sysinfo",
+    "processes": "processes",
+    "Quick": "Quick",
+    "Balanced": "Balanced",
+    "Deep": "Deep",
+    "Builder Default": "Builder Default",
+    "Builder Deep": "Builder Deep",
+    "Fastest responses (gpt-5-mini)": "Fastest responses (gpt-5-mini)",
+    "Good mix of speed and accuracy\n(gpt-5.1 with minimal thinking)": "Good mix of speed and accuracy\n(gpt-5.1 with minimal thinking)",
+    "Slower but most capable\n(gpt-5.1 with full reasoning)": "Slower but most capable\n(gpt-5.1 with full reasoning)",
+    "Good mix of speed and accuracy\n(gpt-5.4 with minimal thinking)": "Good mix of speed and accuracy\n(gpt-5.4 with minimal thinking)",
+    "Slower but most capable\n(gpt-5.4 with full reasoning)": "Slower but most capable\n(gpt-5.4 with full reasoning)"
 }

@@ -62,21 +62,24 @@ async function handleWidgetSelect(widget: WidgetConfigType, env: WidgetsEnv) {
 }
 
 const Widget = memo(({ widget, mode, env }: WidgetPropsType) => {
+    const t = useT();
     const [isTruncated, setIsTruncated] = useState(false);
     const labelRef = useRef<HTMLDivElement>(null);
+    const displayLabel = widget.label ? t(widget.label) : widget.label;
+    const displayDescription = widget.description ? t(widget.description) : widget.description;
 
     useEffect(() => {
         if (mode === "normal" && labelRef.current) {
             const element = labelRef.current;
             setIsTruncated(element.scrollWidth > element.clientWidth);
         }
-    }, [mode, widget.label]);
+    }, [mode, displayLabel]);
 
     const shouldDisableTooltip = mode !== "normal" ? false : !isTruncated;
 
     return (
         <Tooltip
-            content={widget.description || widget.label}
+            content={displayDescription || displayLabel}
             placement="left"
             disable={shouldDisableTooltip}
             divClassName={clsx(
@@ -94,7 +97,7 @@ const Widget = memo(({ widget, mode, env }: WidgetPropsType) => {
                     ref={labelRef}
                     className="text-xxs mt-0.5 w-full px-0.5 text-center whitespace-nowrap overflow-hidden text-ellipsis"
                 >
-                    {widget.label}
+                    {displayLabel}
                 </div>
             ) : null}
         </Tooltip>
