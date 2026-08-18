@@ -353,6 +353,8 @@ func createPublicKeyCallback(connCtx context.Context, sshKeywords *wconfig.ConnK
 			ResponseType: "text",
 			QueryText:    fmt.Sprintf("Enter passphrase for the SSH key: %s", identityFile),
 			Title:        "Publickey Auth + Passphrase",
+			MessageId:    "Enter passphrase for the SSH key: {{identityFile}}",
+			Params:       map[string]string{"identityFile": identityFile},
 		}
 		ctx, cancelFn := context.WithTimeout(connCtx, 60*time.Second)
 		defer cancelFn()
@@ -408,6 +410,8 @@ func createPasswordCallbackPrompt(connCtx context.Context, remoteDisplayName str
 			QueryText:    queryText,
 			Markdown:     true,
 			Title:        "Password Authentication",
+			MessageId:    "Password Authentication requested from connection  \n{{remote}}\n\nPassword:",
+			Params:       map[string]string{"remote": remoteDisplayName},
 		}
 		response, err := userinput.GetUserInput(ctx, request)
 		if err != nil {
@@ -457,6 +461,8 @@ func promptChallengeQuestion(connCtx context.Context, question string, echo bool
 		Markdown:     true,
 		Title:        "Keyboard Interactive Authentication",
 		PublicText:   echo,
+		MessageId:    "Keyboard Interactive Authentication requested from connection  \n{{remote}}\n\n{{question}}",
+		Params:       map[string]string{"remote": remoteName, "question": question},
 	}
 	response, err := userinput.GetUserInput(ctx, request)
 	if err != nil {
@@ -529,6 +535,20 @@ func createUnknownKeyVerifier(ctx context.Context, knownHostsFile string, hostna
 		QueryText:    queryText,
 		Markdown:     true,
 		Title:        "Known Hosts Key Missing",
+		MessageId: "The authenticity of host '{{hostname}} ({{remote}})' can't be established " +
+			"as it **does not exist in any checked known_hosts files**. " +
+			"The host you are attempting to connect to provides this {{keyType}} key:  \n" +
+			"{{key}}.\n\n" +
+			"**Would you like to continue connecting?** If so, the key will be permanently " +
+			"added to the file {{knownHostsFile}} " +
+			"to protect from future man-in-the-middle attacks.",
+		Params: map[string]string{
+			"hostname":       hostname,
+			"remote":         remote,
+			"keyType":        key.Type(),
+			"key":            base64Key,
+			"knownHostsFile": knownHostsFile,
+		},
 	}
 	return func() (*userinput.UserInputResponse, error) {
 		ctx, cancelFn := context.WithTimeout(ctx, 60*time.Second)
@@ -560,6 +580,21 @@ func createMissingKnownHostsVerifier(knownHostsFile string, hostname string, rem
 		QueryText:    queryText,
 		Markdown:     true,
 		Title:        "Known Hosts File Missing",
+		MessageId: "The authenticity of host '{{hostname}} ({{remote}})' can't be established " +
+			"as **no known_hosts files could be found**. " +
+			"The host you are attempting to connect to provides this {{keyType}} key:  \n" +
+			"{{key}}.\n\n" +
+			"**Would you like to continue connecting?** If so:  \n" +
+			"- {{knownHostsFile}} will be created  \n" +
+			"- the key will be added to {{knownHostsFile}}\n\n" +
+			"This will protect from future man-in-the-middle attacks.",
+		Params: map[string]string{
+			"hostname":       hostname,
+			"remote":         remote,
+			"keyType":        key.Type(),
+			"key":            base64Key,
+			"knownHostsFile": knownHostsFile,
+		},
 	}
 	return func() (*userinput.UserInputResponse, error) {
 		ctx, cancelFn := context.WithTimeout(context.Background(), 60*time.Second)

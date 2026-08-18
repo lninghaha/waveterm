@@ -1779,6 +1779,8 @@ declare global {
         publictext: boolean;
         oklabel?: string;
         cancellabel?: string;
+        messageid?: string;
+        params?: {[key: string]: string};
     };
 
     // userinput.UserInputResponse

@@ -629,6 +629,11 @@ func (conn *SSHConn) getPermissionToInstallWsh(ctx context.Context, clientDispla
 		CheckBoxMsg:  "Automatically install for all connections",
 		OkLabel:      "Install wsh",
 		CancelLabel:  "No wsh",
+		MessageId: "Wave requires Wave Shell Extensions to be\n" +
+			"installed on \"{{name}}\"\n" +
+			"to ensure a seamless experience.\n\n" +
+			"Would you like to install them?",
+		Params: map[string]string{"name": clientDisplayName},
 	}
 	conn.Infof(ctx, "requesting user confirmation...\n")
 	response, err := userinput.GetUserInput(ctx, request)

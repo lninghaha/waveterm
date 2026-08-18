@@ -536,5 +536,21 @@
     "Join Our Discord": "Join Our Discord",
     "Configuration Options": "Configuration Options",
     "All Keybindings": "All Keybindings",
-    "Full Documentation": "Full Documentation"
+    "Full Documentation": "Full Documentation",
+    "Publickey Auth + Passphrase": "Publickey Auth + Passphrase",
+    "Enter passphrase for the SSH key: {{identityFile}}": "Enter passphrase for the SSH key: {{identityFile}}",
+    "Password Authentication": "Password Authentication",
+    "Password Authentication requested from connection  \n{{remote}}\n\nPassword:": "Password Authentication requested from connection  \n{{remote}}\n\nPassword:",
+    "Keyboard Interactive Authentication": "Keyboard Interactive Authentication",
+    "Keyboard Interactive Authentication requested from connection  \n{{remote}}\n\n{{question}}": "Keyboard Interactive Authentication requested from connection  \n{{remote}}\n\n{{question}}",
+    "Known Hosts Key Missing": "Known Hosts Key Missing",
+    "The authenticity of host '{{hostname}} ({{remote}})' can't be established as it **does not exist in any checked known_hosts files**. The host you are attempting to connect to provides this {{keyType}} key:  \n{{key}}.\n\n**Would you like to continue connecting?** If so, the key will be permanently added to the file {{knownHostsFile}} to protect from future man-in-the-middle attacks.": "The authenticity of host '{{hostname}} ({{remote}})' can't be established as it **does not exist in any checked known_hosts files**. The host you are attempting to connect to provides this {{keyType}} key:  \n{{key}}.\n\n**Would you like to continue connecting?** If so, the key will be permanently added to the file {{knownHostsFile}} to protect from future man-in-the-middle attacks.",
+    "Known Hosts File Missing": "Known Hosts File Missing",
+    "The authenticity of host '{{hostname}} ({{remote}})' can't be established as **no known_hosts files could be found**. The host you are attempting to connect to provides this {{keyType}} key:  \n{{key}}.\n\n**Would you like to continue connecting?** If so:  \n- {{knownHostsFile}} will be created  \n- the key will be added to {{knownHostsFile}}\n\nThis will protect from future man-in-the-middle attacks.": "The authenticity of host '{{hostname}} ({{remote}})' can't be established as **no known_hosts files could be found**. The host you are attempting to connect to provides this {{keyType}} key:  \n{{key}}.\n\n**Would you like to continue connecting?** If so:  \n- {{knownHostsFile}} will be created  \n- the key will be added to {{knownHostsFile}}\n\nThis will protect from future man-in-the-middle attacks.",
+    "Install Wave Shell Extensions": "Install Wave Shell Extensions",
+    "Wave requires Wave Shell Extensions to be\ninstalled on \"{{name}}\"\nto ensure a seamless experience.\n\nWould you like to install them?": "Wave requires Wave Shell Extensions to be\ninstalled on \"{{name}}\"\nto ensure a seamless experience.\n\nWould you like to install them?",
+    "Automatically install for all connections": "Automatically install for all connections",
+    "Install wsh": "Install wsh",
+    "No wsh": "No wsh",
+    "{{title}} ({{seconds}}s)": "{{title}} ({{seconds}}s)"
 }

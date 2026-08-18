@@ -1,6 +1,7 @@
 // Copyright 2025, Command Line Inc.
 // SPDX-License-Identifier: Apache-2.0
 
+import { useT } from "@/app/i18n/use-i18n";
 import { Modal } from "@/app/modals/modal";
 import { Markdown } from "@/element/markdown";
 import { modalsModel } from "@/store/modalmodel";
@@ -10,9 +11,15 @@ import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { UserInputService } from "../store/services";
 
 const UserInputModal = (userInputRequest: UserInputRequest) => {
+    const t = useT();
     const [responseText, setResponseText] = useState("");
     const [countdown, setCountdown] = useState(Math.floor(userInputRequest.timeoutms / 1000));
     const checkboxRef = useRef<HTMLInputElement>(null);
+
+    const translatedTitle = userInputRequest.title ? t(userInputRequest.title) : "";
+    const queryBody = userInputRequest.messageid
+        ? t(userInputRequest.messageid, userInputRequest.params)
+        : userInputRequest.querytext;
 
     const handleSendErrResponse = useCallback(() => {
         fireAndForget(() =>
@@ -23,7 +30,7 @@ const UserInputModal = (userInputRequest: UserInputRequest) => {
             })
         );
         modalsModel.popModal();
-    }, [responseText, userInputRequest]);
+    }, [userInputRequest]);
 
     const handleSendText = useCallback(() => {
         fireAndForget(() =>
@@ -73,17 +80,17 @@ const UserInputModal = (userInputRequest: UserInputRequest) => {
                 handleSubmit();
                 return true;
             }
-			return false;
+            return false;
         },
         [handleSendErrResponse, handleSubmit]
     );
 
     const queryText = useMemo(() => {
         if (userInputRequest.markdown) {
-            return <Markdown text={userInputRequest.querytext} />;
+            return <Markdown text={queryBody} />;
         }
-        return <span>{userInputRequest.querytext}</span>;
-    }, [userInputRequest.markdown, userInputRequest.querytext]);
+        return <span>{queryBody}</span>;
+    }, [userInputRequest.markdown, queryBody]);
 
     const inputBox = useMemo(() => {
         if (userInputRequest.responsetype === "confirm") {
@@ -115,11 +122,13 @@ const UserInputModal = (userInputRequest: UserInputRequest) => {
                         className="accent-accent cursor-pointer"
                         ref={checkboxRef}
                     />
-                    <label htmlFor={`uicheckbox-${userInputRequest.requestid}`} className="cursor-pointer">{userInputRequest.checkboxmsg}</label>
+                    <label htmlFor={`uicheckbox-${userInputRequest.requestid}`} className="cursor-pointer">
+                        {t(userInputRequest.checkboxmsg)}
+                    </label>
                 </div>
             </div>
         );
-    }, []);
+    }, [userInputRequest.checkboxmsg, userInputRequest.requestid, t]);
 
     useEffect(() => {
         let timeout: ReturnType<typeof setTimeout>;
@@ -146,16 +155,21 @@ const UserInputModal = (userInputRequest: UserInputRequest) => {
         }
     }, [userInputRequest.responsetype, handleSendErrResponse, handleSendConfirm]);
 
+    const okLabel = userInputRequest.oklabel ? t(userInputRequest.oklabel) : undefined;
+    const cancelLabel = userInputRequest.cancellabel ? t(userInputRequest.cancellabel) : undefined;
+
     return (
         <Modal
             className="pt-6 pb-4 px-5"
             onOk={() => handleSubmit()}
             onCancel={() => handleNegativeResponse()}
             onClose={() => handleSendErrResponse()}
-            okLabel={userInputRequest.oklabel}
-            cancelLabel={userInputRequest.cancellabel}
+            okLabel={okLabel}
+            cancelLabel={cancelLabel}
         >
-            <div className="font-bold text-primary mx-4 pb-2.5">{userInputRequest.title + ` (${countdown}s)`}</div>
+            <div className="font-bold text-primary mx-4 pb-2.5">
+                {t("{{title}} ({{seconds}}s)", { title: translatedTitle, seconds: countdown })}
+            </div>
             <div className="flex flex-col justify-between gap-4 mx-4 mb-4 max-w-[500px] font-mono text-primary">
                 {queryText}
                 {inputBox}

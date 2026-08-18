@@ -28,16 +28,18 @@ type UserInputProvider interface {
 }
 
 type UserInputRequest struct {
-	RequestId    string `json:"requestid"`
-	QueryText    string `json:"querytext"`
-	ResponseType string `json:"responsetype"`
-	Title        string `json:"title"`
-	Markdown     bool   `json:"markdown"`
-	TimeoutMs    int    `json:"timeoutms"`
-	CheckBoxMsg  string `json:"checkboxmsg"`
-	PublicText   bool   `json:"publictext"`
-	OkLabel      string `json:"oklabel,omitempty"`
-	CancelLabel  string `json:"cancellabel,omitempty"`
+	RequestId    string            `json:"requestid"`
+	QueryText    string            `json:"querytext"`
+	ResponseType string            `json:"responsetype"`
+	Title        string            `json:"title"`
+	Markdown     bool              `json:"markdown"`
+	TimeoutMs    int               `json:"timeoutms"`
+	CheckBoxMsg  string            `json:"checkboxmsg"`
+	PublicText   bool              `json:"publictext"`
+	OkLabel      string            `json:"oklabel,omitempty"`
+	CancelLabel  string            `json:"cancellabel,omitempty"`
+	MessageId    string            `json:"messageid,omitempty"`
+	Params       map[string]string `json:"params,omitempty"`
 }
 
 type UserInputResponse struct {

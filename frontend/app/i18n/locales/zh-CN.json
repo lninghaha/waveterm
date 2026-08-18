@@ -536,5 +536,21 @@
     "Join Our Discord": "加入我们的 Discord",
     "Configuration Options": "配置选项",
     "All Keybindings": "所有快捷键",
-    "Full Documentation": "完整文档"
+    "Full Documentation": "完整文档",
+    "Publickey Auth + Passphrase": "公钥认证 + 密码短语",
+    "Enter passphrase for the SSH key: {{identityFile}}": "请输入 SSH 密钥的密码短语：{{identityFile}}",
+    "Password Authentication": "密码认证",
+    "Password Authentication requested from connection  \n{{remote}}\n\nPassword:": "连接请求密码认证  \n{{remote}}\n\n密码：",
+    "Keyboard Interactive Authentication": "键盘交互认证",
+    "Keyboard Interactive Authentication requested from connection  \n{{remote}}\n\n{{question}}": "连接请求键盘交互认证  \n{{remote}}\n\n{{question}}",
+    "Known Hosts Key Missing": "缺少 Known Hosts 密钥",
+    "The authenticity of host '{{hostname}} ({{remote}})' can't be established as it **does not exist in any checked known_hosts files**. The host you are attempting to connect to provides this {{keyType}} key:  \n{{key}}.\n\n**Would you like to continue connecting?** If so, the key will be permanently added to the file {{knownHostsFile}} to protect from future man-in-the-middle attacks.": "无法确认主机“{{hostname}}（{{remote}}）”的真实性，因为它**不存在于任何已检查的 known_hosts 文件中**。你尝试连接的主机提供了此 {{keyType}} 密钥：  \n{{key}}。\n\n**是否继续连接？** 若继续，该密钥将永久写入文件 {{knownHostsFile}}，以防后续中间人攻击。",
+    "Known Hosts File Missing": "缺少 Known Hosts 文件",
+    "The authenticity of host '{{hostname}} ({{remote}})' can't be established as **no known_hosts files could be found**. The host you are attempting to connect to provides this {{keyType}} key:  \n{{key}}.\n\n**Would you like to continue connecting?** If so:  \n- {{knownHostsFile}} will be created  \n- the key will be added to {{knownHostsFile}}\n\nThis will protect from future man-in-the-middle attacks.": "无法确认主机“{{hostname}}（{{remote}}）”的真实性，因为**找不到任何 known_hosts 文件**。你尝试连接的主机提供了此 {{keyType}} 密钥：  \n{{key}}。\n\n**是否继续连接？** 若继续：  \n- 将创建 {{knownHostsFile}}  \n- 该密钥将写入 {{knownHostsFile}}\n\n这有助于防范后续中间人攻击。",
+    "Install Wave Shell Extensions": "安装 Wave Shell 扩展",
+    "Wave requires Wave Shell Extensions to be\ninstalled on \"{{name}}\"\nto ensure a seamless experience.\n\nWould you like to install them?": "Wave 需要在“{{name}}”上安装 Wave Shell 扩展，以确保流畅体验。\n\n是否安装？",
+    "Automatically install for all connections": "为所有连接自动安装",
+    "Install wsh": "安装 wsh",
+    "No wsh": "不安装 wsh",
+    "{{title}} ({{seconds}}s)": "{{title}}（{{seconds}}秒）"
 }
