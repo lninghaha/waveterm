@@ -30,13 +30,22 @@ git push --force-with-lease origin i18n/zh-CN
 - locale：约 569 keys，`en` / `zh-CN` 对齐
 - 默认语言：`app:language` = `zh-CN`
 
-本环境不产出 Windows 安装包；请在本地：
+### Windows x64 安装包（推荐：GitHub Actions）
+
+仓库已加 workflow：`.github/workflows/build-windows-x64.yml`。
+
+- 推送匹配 `v*-zhCN*` 的 tag 会自动在 `windows-latest` 打 **未签名** NSIS `.exe`，并挂到对应 GitHub Release。
+- 也可在 Actions 页手动 **Run workflow**（`Build Windows x64`）。
+- 产物名大致：`Wave-win-x64-<version>.exe`（见 `electron-builder` artifactName）。
+- 无 DigiCert 密钥，安装时 Windows SmartScreen 可能提示「未知发布者」，选仍要运行即可。
+
+本地打包（需 Node 22、Go、Task、Zig）：
 
 ```text
 git checkout i18n/zh-CN
 git pull
 task init
-task package   # 产物在 make/
+task package -- --win nsis --x64   # 产物在 make/
 ```
 
 ## 现状（已完成）
