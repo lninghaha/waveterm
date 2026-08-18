@@ -2,7 +2,6 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { Button } from "@/app/element/button";
-import { t } from "@/app/i18n/core";
 import { useT } from "@/app/i18n/use-i18n";
 import {
     MetaKeyAtomFnType,
