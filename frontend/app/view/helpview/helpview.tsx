@@ -1,6 +1,7 @@
 // Copyright 2026, Command Line Inc.
 // SPDX-License-Identifier: Apache-2.0
 
+import { t } from "@/app/i18n/core";
 import { globalStore, WOS } from "@/app/store/global";
 import { RpcApi } from "@/app/store/wshclientapi";
 import { TabRpcClient } from "@/app/store/wshrpcutil";
@@ -84,7 +85,7 @@ class HelpViewModel extends WebViewModel {
             };
         }
         zoomSubMenu.push({
-            label: "Reset",
+            label: t("Reset"),
             click: () => {
                 model.setZoomFactor(null);
             },
@@ -104,7 +105,7 @@ class HelpViewModel extends WebViewModel {
 
         return [
             {
-                label: this.webviewRef.current?.isDevToolsOpened() ? "Close DevTools" : "Open DevTools",
+                label: this.webviewRef.current?.isDevToolsOpened() ? t("Close DevTools") : t("Open DevTools"),
                 click: async () => {
                     if (this.webviewRef.current) {
                         if (this.webviewRef.current.isDevToolsOpened()) {
@@ -116,7 +117,7 @@ class HelpViewModel extends WebViewModel {
                 },
             },
             {
-                label: "Set Zoom Factor",
+                label: t("Set Zoom Factor"),
                 submenu: zoomSubMenu,
             },
         ];

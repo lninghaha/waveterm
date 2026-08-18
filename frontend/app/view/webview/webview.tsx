@@ -3,6 +3,8 @@
 
 import { BlockNodeModel } from "@/app/block/blocktypes";
 import { Search, useSearch } from "@/app/element/search";
+import { t } from "@/app/i18n/core";
+import { useT } from "@/app/i18n/use-i18n";
 import { globalStore } from "@/app/store/jotaiStore";
 import { getSimpleControlShiftAtom } from "@/app/store/keymodel";
 import type { TabModel } from "@/app/store/tab-model";
@@ -186,7 +188,9 @@ export class WebViewModel implements ViewModel {
             if (userAgentType === "mobile:iphone" || userAgentType === "mobile:android") {
                 const mobileIcon = userAgentType === "mobile:iphone" ? "mobile-screen" : "mobile-screen-button";
                 const mobileTitle =
-                    userAgentType === "mobile:iphone" ? "Mobile User Agent: iPhone" : "Mobile User Agent: Android";
+                    userAgentType === "mobile:iphone"
+                        ? t("Mobile User Agent: iPhone")
+                        : t("Mobile User Agent: Android");
                 buttons.push({
                     elemtype: "iconbutton",
                     icon: mobileIcon,
@@ -198,7 +202,7 @@ export class WebViewModel implements ViewModel {
             buttons.push({
                 elemtype: "iconbutton",
                 icon: "arrow-up-right-from-square",
-                title: "Open in External Browser",
+                title: t("Open in External Browser"),
                 click: () => {
                     console.log("open external", url);
                     if (url != null && url != "") {
@@ -623,7 +627,7 @@ export class WebViewModel implements ViewModel {
             };
         };
         zoomSubMenu.push({
-            label: "Reset",
+            label: t("Reset"),
             click: () => {
                 this.setZoomFactor(null);
             },
@@ -645,7 +649,7 @@ export class WebViewModel implements ViewModel {
         const curUserAgentType = globalStore.get(this.userAgentType) || "default";
         const userAgentSubMenu: ContextMenuItem[] = [
             {
-                label: "Default",
+                label: t("Default"),
                 type: "checkbox",
                 click: () => {
                     fireAndForget(() => {
@@ -658,7 +662,7 @@ export class WebViewModel implements ViewModel {
                 checked: curUserAgentType === "default" || curUserAgentType === "",
             },
             {
-                label: "Mobile: iPhone",
+                label: t("Mobile: iPhone"),
                 type: "checkbox",
                 click: () => {
                     fireAndForget(() => {
@@ -671,7 +675,7 @@ export class WebViewModel implements ViewModel {
                 checked: curUserAgentType === "mobile:iphone",
             },
             {
-                label: "Mobile: Android",
+                label: t("Mobile: Android"),
                 type: "checkbox",
                 click: () => {
                     fireAndForget(() => {
@@ -688,29 +692,29 @@ export class WebViewModel implements ViewModel {
         const isNavHidden = globalStore.get(this.hideNav);
         return [
             {
-                label: "Copy URL to Clipboard",
+                label: t("Copy URL to Clipboard"),
                 click: () => this.copyUrlToClipboard(),
             },
             {
-                label: "Set Block Homepage",
+                label: t("Set Block Homepage"),
                 click: () => fireAndForget(() => this.setHomepageUrl(this.getUrl(), "block")),
             },
             {
-                label: "Set Default Homepage",
+                label: t("Set Default Homepage"),
                 click: () => fireAndForget(() => this.setHomepageUrl(this.getUrl(), "global")),
             },
             {
                 type: "separator",
             },
             {
-                label: "User Agent Type",
+                label: t("User Agent Type"),
                 submenu: userAgentSubMenu,
             },
             {
                 type: "separator",
             },
             {
-                label: isNavHidden ? "Un-Hide Navigation" : "Hide Navigation",
+                label: isNavHidden ? t("Un-Hide Navigation") : t("Hide Navigation"),
                 click: () =>
                     fireAndForget(() => {
                         return this.env.rpc.SetMetaCommand(TabRpcClient, {
@@ -720,11 +724,11 @@ export class WebViewModel implements ViewModel {
                     }),
             },
             {
-                label: "Set Zoom Factor",
+                label: t("Set Zoom Factor"),
                 submenu: zoomSubMenu,
             },
             {
-                label: this.webviewRef.current?.isDevToolsOpened() ? "Close DevTools" : "Open DevTools",
+                label: this.webviewRef.current?.isDevToolsOpened() ? t("Close DevTools") : t("Open DevTools"),
                 click: () => {
                     if (this.webviewRef.current) {
                         if (this.webviewRef.current.isDevToolsOpened()) {
@@ -739,11 +743,11 @@ export class WebViewModel implements ViewModel {
                 type: "separator",
             },
             {
-                label: "Clear History",
+                label: t("Clear History"),
                 click: () => this.clearHistory(),
             },
             {
-                label: "Clear Cookies and Storage (All Web Widgets)",
+                label: t("Clear Cookies and Storage (All Web Widgets)"),
                 click: () => fireAndForget(() => this.clearCookiesAndStorage()),
             },
         ];
@@ -752,6 +756,7 @@ export class WebViewModel implements ViewModel {
 
 const BookmarkTypeahead = memo(
     ({ model, blockRef }: { model: WebViewModel; blockRef: React.RefObject<HTMLDivElement> }) => {
+        const t = useT();
         const env = useWaveEnv<WebViewEnv>();
         const openBookmarksJson = () => {
             fireAndForget(async () => {
@@ -779,31 +784,33 @@ const BookmarkTypeahead = memo(
                     return true;
                 }}
                 fetchSuggestions={model.fetchBookmarkSuggestions}
-                placeholderText="Open Bookmark..."
+                placeholderText={t("Open Bookmark...")}
             >
                 <SuggestionControlNoData>
                     <div className="text-center">
-                        <p className="text-lg font-bold text-gray-100">No Bookmarks Configured</p>
+                        <p className="text-lg font-bold text-gray-100">{t("No Bookmarks Configured")}</p>
                         <p className="text-sm text-gray-400 mt-1">
-                            Edit your <code className="font-mono">bookmarks.json</code> file to configure bookmarks.
+                            {t("Edit your ")}
+                            <code className="font-mono">bookmarks.json</code>
+                            {t(" file to configure bookmarks.")}
                         </p>
                         <button
                             onClick={openBookmarksJson}
                             className="mt-3 px-4 py-2 text-sm font-medium text-black bg-accent hover:bg-accenthover rounded-lg cursor-pointer"
                         >
-                            Open bookmarks.json
+                            {t("Open bookmarks.json")}
                         </button>
                     </div>
                 </SuggestionControlNoData>
 
                 <SuggestionControlNoResults>
                     <div className="text-center">
-                        <p className="text-sm text-gray-400">No matching bookmarks</p>
+                        <p className="text-sm text-gray-400">{t("No matching bookmarks")}</p>
                         <button
                             onClick={openBookmarksJson}
                             className="mt-3 px-4 py-2 text-sm font-medium text-black bg-accent hover:bg-accenthover rounded-lg cursor-pointer"
                         >
-                            Edit bookmarks.json
+                            {t("Edit bookmarks.json")}
                         </button>
                     </div>
                 </SuggestionControlNoResults>
@@ -842,6 +849,7 @@ function WebViewPreviewFallback({ url }: { url?: string | null }) {
 }
 
 const WebView = memo(({ model, onFailLoad, blockRef, initialSrc }: WebViewProps) => {
+    const t = useT();
     const env = useWaveEnv<WebViewEnv>();
     const blockData = useAtomValue(model.blockAtom);
     const defaultUrl = useAtomValue(model.homepageUrl);
@@ -1045,7 +1053,10 @@ const WebView = memo(({ model, onFailLoad, blockRef, initialSrc }: WebViewProps)
             if (e.errorCode === -3) {
                 console.warn("Suppressed ERR_ABORTED error", e);
             } else {
-                const errorMessage = `Failed to load ${e.validatedURL}: ${e.errorDescription}`;
+                const errorMessage = t("Failed to load {{url}}: {{description}}", {
+                    url: e.validatedURL,
+                    description: e.errorDescription,
+                });
                 console.error(errorMessage);
                 setErrorText(errorMessage);
                 if (onFailLoad) {
