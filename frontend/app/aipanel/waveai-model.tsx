@@ -7,6 +7,7 @@ import {
     WaveUIMessage,
     WaveUIMessagePart,
 } from "@/app/aipanel/aitypes";
+import { t } from "@/app/i18n/core";
 import { FocusManager } from "@/app/store/focusManager";
 import { atoms, createBlock, getOrefMetaKeyAtom, getSettingsKeyAtom } from "@/app/store/global";
 import { globalStore } from "@/app/store/jotaiStore";
@@ -226,18 +227,18 @@ export class WaveAIModel {
 
     async addFileFromRemoteUri(draggedFile: DraggedFile): Promise<void> {
         if (draggedFile.isDir) {
-            this.setError("Cannot add directories to Wave AI. Please select a file.");
+            this.setError(t("Cannot add directories to Wave AI. Please select a file."));
             return;
         }
 
         try {
             const fileInfo = await RpcApi.FileInfoCommand(TabRpcClient, { info: { path: draggedFile.uri } }, null);
             if (fileInfo.notfound) {
-                this.setError(`File not found: ${draggedFile.relName}`);
+                this.setError(t("File not found: {{name}}", { name: draggedFile.relName }));
                 return;
             }
             if (fileInfo.isdir) {
-                this.setError("Cannot add directories to Wave AI. Please select a file.");
+                this.setError(t("Cannot add directories to Wave AI. Please select a file."));
                 return;
             }
 
@@ -251,7 +252,7 @@ export class WaveAIModel {
 
             const fileData = await RpcApi.FileReadCommand(TabRpcClient, { info: { path: draggedFile.uri } }, null);
             if (!fileData.data64) {
-                this.setError(`Failed to read file: ${draggedFile.relName}`);
+                this.setError(t("Failed to read file: {{name}}", { name: draggedFile.relName }));
                 return;
             }
 
@@ -259,7 +260,9 @@ export class WaveAIModel {
             const file = new File([buffer], draggedFile.relName, { type: mimeType });
             if (!isAcceptableFile(file)) {
                 this.setError(
-                    `File type not supported: ${draggedFile.relName}. Supported: images, PDFs, and text/code files.`
+                    t("File type not supported: {{name}}. Supported: images, PDFs, and text/code files.", {
+                        name: draggedFile.relName,
+                    })
                 );
                 return;
             }
@@ -268,7 +271,7 @@ export class WaveAIModel {
         } catch (error) {
             console.error("Error handling FILE_ITEM drop:", error);
             const errorMsg = error instanceof Error ? error.message : String(error);
-            this.setError(`Failed to add file: ${errorMsg}`);
+            this.setError(t("Failed to add file: {{msg}}", { msg: errorMsg }));
         }
     }
 
@@ -498,7 +501,7 @@ export class WaveAIModel {
             return await this.reloadChatFromBackend(chatIdValue);
         } catch (error) {
             console.error("Failed to load chat:", error);
-            this.setError("Failed to load chat. Starting new chat...");
+            this.setError(t("Failed to load chat. Starting new chat..."));
 
             this.clearChat();
             return [];

@@ -1,6 +1,8 @@
 // Copyright 2025, Command Line Inc.
 // SPDX-License-Identifier: Apache-2.0
 
+import { t } from "@/app/i18n/core";
+import { useT } from "@/app/i18n/use-i18n";
 import { atoms } from "@/app/store/global";
 import * as jotai from "jotai";
 import { memo, useEffect, useState } from "react";
@@ -46,19 +48,20 @@ function formatTimeRemaining(expirationEpoch: number): string {
     const secondsRemaining = expirationEpoch - now;
 
     if (secondsRemaining <= 0) {
-        return "soon";
+        return t("soon");
     }
 
     const hours = Math.floor(secondsRemaining / 3600);
     const minutes = Math.floor((secondsRemaining % 3600) / 60);
 
     if (hours > 0) {
-        return `${hours}h`;
+        return t("{{hours}}h", { hours });
     }
-    return `${minutes}m`;
+    return t("{{minutes}}m", { minutes });
 }
 
 const AIRateLimitStripComponent = memo(() => {
+    const t = useT();
     let rateLimitInfo = jotai.useAtomValue(atoms.waveAIRateLimitInfoAtom);
     // rateLimitInfo = { req: 0, reqlimit: 200, preq: 0, preqlimit: 50, resetepoch: 1759374575 + 45 * 60 }; // testing
     const [, forceUpdate] = useState({});
@@ -90,11 +93,9 @@ const AIRateLimitStripComponent = memo(() => {
             <div>
                 <div className="bg-yellow-900/30 border-b border-yellow-700/50 px-2 py-1.5 flex items-center gap-1 text-[11px] text-yellow-200">
                     <i className="fa fa-sparkles text-yellow-400"></i>
-                    <span>
-                        {preqlimit - preq}/{preqlimit} Premium Used
-                    </span>
+                    <span>{t("{{used}}/{{limit}} Premium Used", { used: preqlimit - preq, limit: preqlimit })}</span>
                     <div className="flex-1"></div>
-                    <span className="text-yellow-300/80">Resets in {timeRemaining}</span>
+                    <span className="text-yellow-300/80">{t("Resets in {{time}}", { time: timeRemaining })}</span>
                 </div>
                 <GetMoreButton variant="yellow" />
             </div>
@@ -106,13 +107,11 @@ const AIRateLimitStripComponent = memo(() => {
             <div>
                 <div className="bg-yellow-900/30 border-b border-yellow-700/50 px-2 pr-1 py-1.5 flex items-center gap-1 text-[11px] text-yellow-200">
                     <i className="fa fa-check text-yellow-400"></i>
-                    <span>
-                        {preqlimit}/{preqlimit} Premium
-                    </span>
+                    <span>{t("{{used}}/{{limit}} Premium", { used: preqlimit, limit: preqlimit })}</span>
                     <span className="text-yellow-400">•</span>
-                    <span className="font-medium">Now on Basic</span>
+                    <span className="font-medium">{t("Now on Basic")}</span>
                     <div className="flex-1"></div>
-                    <span className="text-yellow-300/80">Resets in {timeRemaining}</span>
+                    <span className="text-yellow-300/80">{t("Resets in {{time}}", { time: timeRemaining })}</span>
                 </div>
                 <GetMoreButton variant="yellow" />
             </div>
@@ -124,13 +123,11 @@ const AIRateLimitStripComponent = memo(() => {
             <div>
                 <div className="bg-red-900/30 border-b border-red-700/50 px-2 py-1.5 flex items-center gap-2 text-[11px] text-red-200">
                     <i className="fa fa-check text-red-400"></i>
-                    <span>
-                        {totalLimit}/{totalLimit} Reqs
-                    </span>
+                    <span>{t("{{used}}/{{limit}} Reqs", { used: totalLimit, limit: totalLimit })}</span>
                     <span className="text-red-400">•</span>
-                    <span className="font-medium">Limit Reached</span>
+                    <span className="font-medium">{t("Limit Reached")}</span>
                     <div className="flex-1"></div>
-                    <span className="text-red-300/80">Resets in {timeRemaining}</span>
+                    <span className="text-red-300/80">{t("Resets in {{time}}", { time: timeRemaining })}</span>
                 </div>
                 <GetMoreButton variant="red" showClose={false} />
             </div>

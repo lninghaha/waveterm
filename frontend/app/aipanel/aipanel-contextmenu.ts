@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { waveAIHasSelection } from "@/app/aipanel/waveai-focus-utils";
+import { t } from "@/app/i18n/core";
 import { ContextMenuModel } from "@/app/store/contextmenu";
 import { isDev } from "@/app/store/global";
 import { globalStore } from "@/app/store/jotaiStore";
@@ -27,7 +28,7 @@ export async function handleWaveAIContextMenu(e: React.MouseEvent, showCopy: boo
     }
 
     menu.push({
-        label: "New Chat",
+        label: t("New Chat"),
         click: () => {
             model.clearChat();
         },
@@ -47,7 +48,7 @@ export async function handleWaveAIContextMenu(e: React.MouseEvent, showCopy: boo
     if (model.inBuilder) {
         maxTokensSubmenu.push(
             {
-                label: "24k",
+                label: t("24k"),
                 type: "checkbox",
                 checked: currentMaxTokens === 24576,
                 click: () => {
@@ -58,7 +59,7 @@ export async function handleWaveAIContextMenu(e: React.MouseEvent, showCopy: boo
                 },
             },
             {
-                label: "64k (Pro)",
+                label: t("64k (Pro)"),
                 type: "checkbox",
                 checked: currentMaxTokens === 65536,
                 click: () => {
@@ -72,7 +73,7 @@ export async function handleWaveAIContextMenu(e: React.MouseEvent, showCopy: boo
     } else {
         if (isDev()) {
             maxTokensSubmenu.push({
-                label: "1k (Dev Testing)",
+                label: t("1k (Dev Testing)"),
                 type: "checkbox",
                 checked: currentMaxTokens === 1024,
                 click: () => {
@@ -85,7 +86,7 @@ export async function handleWaveAIContextMenu(e: React.MouseEvent, showCopy: boo
         }
         maxTokensSubmenu.push(
             {
-                label: "4k",
+                label: t("4k"),
                 type: "checkbox",
                 checked: currentMaxTokens === 4096,
                 click: () => {
@@ -96,7 +97,7 @@ export async function handleWaveAIContextMenu(e: React.MouseEvent, showCopy: boo
                 },
             },
             {
-                label: "16k (Pro)",
+                label: t("16k (Pro)"),
                 type: "checkbox",
                 checked: currentMaxTokens === 16384,
                 click: () => {
@@ -107,7 +108,7 @@ export async function handleWaveAIContextMenu(e: React.MouseEvent, showCopy: boo
                 },
             },
             {
-                label: "64k (Pro)",
+                label: t("64k (Pro)"),
                 type: "checkbox",
                 checked: currentMaxTokens === 65536,
                 click: () => {
@@ -121,14 +122,14 @@ export async function handleWaveAIContextMenu(e: React.MouseEvent, showCopy: boo
     }
 
     menu.push({
-        label: "Max Output Tokens",
+        label: t("Max Output Tokens"),
         submenu: maxTokensSubmenu,
     });
 
     menu.push({ type: "separator" });
 
     menu.push({
-        label: "Configure Modes",
+        label: t("Configure Modes"),
         click: () => {
             RpcApi.RecordTEventCommand(
                 TabRpcClient,
@@ -148,7 +149,7 @@ export async function handleWaveAIContextMenu(e: React.MouseEvent, showCopy: boo
         menu.push({ type: "separator" });
 
         menu.push({
-            label: "Hide Wave AI",
+            label: t("Hide Wave AI"),
             click: () => {
                 model.closeWaveAIPanel();
             },
