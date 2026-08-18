@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { computeConnColorNum } from "@/app/block/blockutil";
+import { useT } from "@/app/i18n/use-i18n";
 import { recordTEvent } from "@/app/store/global";
 import { useWaveEnv } from "@/app/waveenv/waveenv";
 import { IconButton } from "@/element/iconbutton";
@@ -20,6 +21,7 @@ interface ConnectionButtonProps {
 export const ConnectionButton = React.memo(
     React.forwardRef<HTMLDivElement, ConnectionButtonProps>(
         ({ connection, changeConnModalAtom, isTerminalBlock }: ConnectionButtonProps, ref) => {
+            const t = useT();
             const waveEnv = useWaveEnv<BlockEnv>();
             const [_connModalOpen, setConnModalOpen] = jotai.useAtom(changeConnModalAtom);
             const isLocal = util.isLocalConnName(connection);
@@ -40,10 +42,10 @@ export const ConnectionButton = React.memo(
             if (isLocal) {
                 color = "var(--color-secondary)";
                 if (connection === "local:gitbash") {
-                    titleText = "Connected to Git Bash";
-                    connDisplayName = "Git Bash";
+                    titleText = t("Connected to Git Bash");
+                    connDisplayName = t("Git Bash");
                 } else {
-                    titleText = "Connected to Local Machine";
+                    titleText = t("Connected to Local Machine");
                     if (localName) {
                         titleText += ` (${localName})`;
                     }
@@ -59,12 +61,12 @@ export const ConnectionButton = React.memo(
                     />
                 );
             } else {
-                titleText = "Connected to " + connection;
+                titleText = t("Connected to {{connection}}", { connection });
                 let iconName = "arrow-right-arrow-left";
                 let iconSvg = null;
                 if (connStatus?.status == "connecting") {
                     color = "var(--warning-color)";
-                    titleText = "Connecting to " + connection;
+                    titleText = t("Connecting to {{connection}}", { connection });
                     shouldSpin = false;
                     iconSvg = (
                         <div className="relative top-[5px] left-[9px] [&_svg]:fill-warning">
@@ -73,22 +75,22 @@ export const ConnectionButton = React.memo(
                     );
                 } else if (connStatus?.status == "error") {
                     color = "var(--error-color)";
-                    titleText = "Error connecting to " + connection;
+                    titleText = t("Error connecting to {{connection}}", { connection });
                     if (connStatus?.error != null) {
                         titleText += " (" + connStatus.error + ")";
                     }
                     showDisconnectedSlash = true;
                 } else if (!connStatus?.connected) {
                     color = "var(--grey-text-color)";
-                    titleText = "Disconnected from " + connection;
+                    titleText = t("Disconnected from {{connection}}", { connection });
                     showDisconnectedSlash = true;
                 } else if (connStatus?.connhealthstatus === "degraded" || connStatus?.connhealthstatus === "stalled") {
                     color = "var(--warning-color)";
                     iconName = "signal-bars-slash";
                     if (connStatus.connhealthstatus === "degraded") {
-                        titleText = "Connection degraded: " + connection;
+                        titleText = t("Connection degraded: {{connection}}", { connection });
                     } else {
-                        titleText = "Connection stalled: " + connection;
+                        titleText = t("Connection stalled: {{connection}}", { connection });
                     }
                 }
                 if (iconSvg != null) {
@@ -147,7 +149,7 @@ export const ConnectionButton = React.memo(
                             decl={{
                                 elemtype: "iconbutton",
                                 icon: "link-slash",
-                                title: "wsh is not installed for this connection",
+                                title: t("wsh is not installed for this connection"),
                             }}
                         />
                     )}

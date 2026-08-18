@@ -8,19 +8,16 @@
     "Language": "语言",
     "English": "English",
     "Simplified Chinese": "简体中文",
-
     "About Wave Terminal": "关于 Wave Terminal",
     "Check for Updates": "检查更新",
     "Quit": "退出",
     "Hide": "隐藏",
     "Hide Others": "隐藏其他",
     "Services": "服务",
-
     "New Window": "新建窗口",
     "New WaveApp Builder Window": "新建 WaveApp Builder 窗口",
     "Close": "关闭",
     "Close (ESC)": "关闭 (ESC)",
-
     "Undo": "撤销",
     "Redo": "重做",
     "Cut": "剪切",
@@ -29,7 +26,6 @@
     "Paste and Match Style": "粘贴并匹配样式",
     "Delete": "删除",
     "Select All": "全选",
-
     "Reload Tab": "重新加载标签页",
     "Reload Window": "重新加载窗口",
     "Relaunch All Windows": "重启所有窗口",
@@ -43,15 +39,12 @@
     "Off": "关",
     "Toggle Full Screen": "切换全屏",
     "Toggle Widgets Bar": "切换小组件栏",
-
     "Minimize": "最小化",
     "Zoom": "缩放",
     "Bring All to Front": "全部置于顶层",
-
     "Create Workspace": "创建工作区",
     "Delete Workspace": "删除工作区",
     "Deleting workspace will also delete its contents.\n\nContinue?": "删除工作区也会删除其中的内容。\n\n是否继续？",
-
     "Confirm Quit": "确认退出",
     "Are you sure you want to quit Wave Terminal?": "确定要退出 Wave Terminal 吗？",
     "Cancel": "取消",
@@ -61,18 +54,15 @@
     "Window has unsaved tabs, closing window will delete existing tabs.\n\nContinue?": "窗口中有未保存的标签页，关闭窗口将删除这些标签页。\n\n是否继续？",
     "Are you sure you want to close this tab?": "确定要关闭这个标签页吗？",
     "Close Tab": "关闭标签页",
-
     "There are currently no updates available.": "当前没有可用更新。",
     "Application Update": "应用更新",
     "Restart": "重启",
     "Later": "稍后",
     "A new version has been downloaded. Restart the application to apply the updates.": "新版本已下载完成。重启应用以安装更新。",
-
     "Wave has detected a performance issue": "Wave 检测到性能问题",
     "Wave is running in ARM64 translation mode which may impact performance.\n\nRecommendation: Download the native ARM64 version from our website for optimal performance.": "Wave 正在 ARM64 转译模式下运行，可能影响性能。\n\n建议：从官网下载原生 ARM64 版本以获得最佳性能。",
     "Dismiss": "忽略",
     "Learn More": "了解更多",
-
     "Open-Source AI-Integrated Terminal": "开源、集成 AI 的终端",
     "Built for Seamless Workflows": "为顺畅工作流而设计",
     "Client Version {{version}}": "客户端版本 {{version}}",
@@ -81,7 +71,6 @@
     "Website": "网站",
     "Open Source": "开源许可",
     "Sponsor": "赞助",
-
     "Rename Tab": "重命名标签页",
     "Copy TabId": "复制标签页 ID",
     "Flag Tab": "标记标签页",
@@ -98,7 +87,6 @@
     "Tab Bar Position": "标签栏位置",
     "Top": "顶部",
     "Left": "左侧",
-
     "Magnify Block": "放大区块",
     "Copy BlockId": "复制区块 ID",
     "Close Block": "关闭区块",
@@ -112,7 +100,6 @@
     "Editor": "编辑器",
     "Help": "帮助",
     "Tips": "提示",
-
     "Wave AI": "Wave AI",
     "Welcome to Wave AI": "欢迎使用 Wave AI",
     "Ask Wave AI anything...": "向 Wave AI 提问…",
@@ -121,7 +108,6 @@
     "Configure Modes": "配置模式",
     "More options": "更多选项",
     "Max Output Tokens": "最大输出 token 数",
-
     "Drop files here": "将文件拖放到此处",
     "Images, PDFs, and text/code files supported": "支持图片、PDF 及文本/代码文件",
     "Wave AI is your terminal assistant with context. I can read your terminal output, analyze widgets, access files, and help you solve problems faster.": "Wave AI 是具备上下文感知能力的终端助手，可以读取你的终端输出、分析小组件、访问文件，帮你更快解决问题。",
@@ -141,7 +127,6 @@
     "An error occurred": "发生错误",
     "{{count}} file rejected (unsupported type): {{names}}. Supported: images, PDFs, and text/code files.": "已拒绝 {{count}} 个文件（不支持的类型）：{{names}}。支持：图片、PDF 及文本/代码文件。",
     "{{count}} files rejected (unsupported type): {{names}}. Supported: images, PDFs, and text/code files.": "已拒绝 {{count}} 个文件（不支持的类型）：{{names}}。支持：图片、PDF 及文本/代码文件。",
-
     "Wave AI is free to use and provides integrated AI chat that can interact with your widgets, help you with code, analyze files, and assist with your terminal workflows.": "Wave AI 免费使用，提供集成式 AI 对话，可与你的小组件交互、协助编写代码、分析文件，并辅助你的终端工作流程。",
     "Telemetry keeps Wave AI free": "遥测数据让 Wave AI 保持免费",
     "To keep Wave AI free for everyone, we require a small amount of ": "为了让所有人都能免费使用 Wave AI，我们需要收集少量",
@@ -153,18 +138,15 @@
     "Enabling...": "启用中…",
     "Enable Telemetry and Continue": "启用遥测并继续",
     "Privacy Policy": "隐私政策",
-
     "Context": "上下文",
     "Widget Access {{state}}": "小组件访问 {{state}}",
     "ON": "开",
     "OFF": "关",
-
     "Continue...": "继续…",
     "What would you like to build...": "你想构建什么…",
     "Attach files": "附加文件",
     "Stop Response": "停止响应",
     "Send message (Enter)": "发送消息（Enter）",
-
     " (premium)": " (高级)",
     "Incompatible Modes": "不兼容的模式",
     "Current": "当前",
@@ -177,26 +159,22 @@
     "No Tools Support": "不支持工具",
     "(Start a New Chat to Switch)": "（需新建对话后切换）",
     "(enable telemetry to unlock Wave AI Cloud)": "（启用遥测以解锁 Wave AI Cloud）",
-
     "24k": "24k",
     "64k (Pro)": "64k（专业版）",
     "1k (Dev Testing)": "1k（开发测试）",
     "4k": "4k",
     "16k (Pro)": "16k（专业版）",
     "Hide Wave AI": "隐藏 Wave AI",
-
     "Image": "图片",
     "PDF": "PDF",
     "Text file": "文本文件",
     "{{type}} \"{{name}}\" is too large ({{size}}). Maximum size is {{max}}.": "{{type}} \"{{name}}\" 太大（{{size}}）。最大允许大小为 {{max}}。",
-
     "Cannot add directories to Wave AI. Please select a file.": "无法将文件夹添加到 Wave AI，请选择一个文件。",
     "File not found: {{name}}": "未找到文件：{{name}}",
     "Failed to read file: {{name}}": "读取文件失败：{{name}}",
     "File type not supported: {{name}}. Supported: images, PDFs, and text/code files.": "不支持的文件类型：{{name}}。支持：图片、PDF 及文本/代码文件。",
     "Failed to add file: {{msg}}": "添加文件失败：{{msg}}",
     "Failed to load chat. Starting new chat...": "加载对话失败，正在开始新对话…",
-
     "{{used}}/{{limit}} Premium Used": "已用 {{used}}/{{limit}} 次高级额度",
     "Resets in {{time}}": "{{time}}后重置",
     "{{used}}/{{limit}} Premium": "{{used}}/{{limit}} 高级",
@@ -206,17 +184,13 @@
     "soon": "很快",
     "{{hours}}h": "{{hours}} 小时",
     "{{minutes}}m": "{{minutes}} 分钟",
-
     "New: BYOK & Local AI Support": "新功能：支持自带密钥（BYOK）与本地 AI",
     "Wave AI now supports bring-your-own-key (BYOK) with OpenAI, Google Gemini, Azure, and OpenRouter, plus local models via Ollama, LM Studio, and other OpenAI-compatible providers.": "Wave AI 现已支持通过 OpenAI、Google Gemini、Azure 和 OpenRouter 自带密钥（BYOK），并支持通过 Ollama、LM Studio 等兼容 OpenAI 的服务使用本地模型。",
     "Configure AI Modes": "配置 AI 模式",
     "View Docs": "查看文档",
-
     "Waiting for Tool Approvals...": "等待工具审批中…",
     "AI is thinking...": "AI 思考中…",
-    "File": "文件",
     "(no text content)": "（无文本内容）",
-
     "Approve": "批准",
     "Approve All ({{count}})": "全部批准（{{count}}）",
     "Deny": "拒绝",
@@ -227,7 +201,6 @@
     "Restore backup file": "恢复备份文件",
     "Show Diff": "查看差异",
     "Open in diff viewer": "在差异查看器中打开",
-
     "Backup Successfully Restored": "备份已成功恢复",
     "The file ": "文件 ",
     " has been restored to its previous state.": " 已恢复到之前的状态。",
@@ -239,11 +212,9 @@
     "This will restore ": "这将把 ",
     "to its state before this edit was made": "恢复到此次编辑之前的状态",
     "Any changes made by this edit and subsequent edits will be lost.": "此次编辑及之后所做的更改都将丢失。",
-
     "Good Response": "回答很好",
     "Bad Response": "回答不佳",
     "Copy Message": "复制消息",
-
     "Local": "本地",
     "Remote": "远程",
     "Git Bash": "Git Bash",
@@ -257,5 +228,28 @@
     "Unsaved changes": "未保存的更改",
     "General": "常规",
     "Connections": "连接",
-    "Wave AI Modes": "Wave AI 模式"
+    "Wave AI Modes": "Wave AI 模式",
+    "Reconnect to {{connection}}": "重新连接到 {{connection}}",
+    "Disconnect {{connection}}": "断开 {{connection}}",
+    "{{connection}} (New Connection)": "{{connection}}（新建连接）",
+    "Connect to (username@host)...": "连接到（username@host）…",
+    "Connected to Git Bash": "已连接到 Git Bash",
+    "Connected to {{connection}}": "已连接到 {{connection}}",
+    "Connecting to {{connection}}": "正在连接到 {{connection}}",
+    "Error connecting to {{connection}}": "连接 {{connection}} 出错",
+    "Disconnected from {{connection}}": "已断开与 {{connection}} 的连接",
+    "Connection degraded: {{connection}}": "连接降级：{{connection}}",
+    "Connection stalled: {{connection}}": "连接停滞：{{connection}}",
+    "wsh is not installed for this connection": "此连接未安装 wsh",
+    "{{seconds}}s": "{{seconds}}秒",
+    "{{hours}}h{{minutes}}m": "{{hours}}小时{{minutes}}分",
+    "more than a day": "超过一天",
+    "Connection Stalled": "连接已停滞",
+    "Connection to \"{{connName}}\" is stalled": "与“{{connName}}”的连接已停滞",
+    " (no activity for {{elapsedTime}})": "（{{elapsedTime}}内无活动）",
+    "Disconnected from \"{{connName}}\"": "已断开与“{{connName}}”的连接",
+    "Connecting to \"{{connName}}\"...": "正在连接到“{{connName}}”…",
+    "error: {{error}}": "错误：{{error}}",
+    "unable to use wsh: {{error}}": "无法使用 wsh：{{error}}",
+    "always disable wsh": "始终禁用 wsh"
 }

@@ -8,19 +8,16 @@
     "Language": "Language",
     "English": "English",
     "Simplified Chinese": "Simplified Chinese",
-
     "About Wave Terminal": "About Wave Terminal",
     "Check for Updates": "Check for Updates",
     "Quit": "Quit",
     "Hide": "Hide",
     "Hide Others": "Hide Others",
     "Services": "Services",
-
     "New Window": "New Window",
     "New WaveApp Builder Window": "New WaveApp Builder Window",
     "Close": "Close",
     "Close (ESC)": "Close (ESC)",
-
     "Undo": "Undo",
     "Redo": "Redo",
     "Cut": "Cut",
@@ -29,7 +26,6 @@
     "Paste and Match Style": "Paste and Match Style",
     "Delete": "Delete",
     "Select All": "Select All",
-
     "Reload Tab": "Reload Tab",
     "Reload Window": "Reload Window",
     "Relaunch All Windows": "Relaunch All Windows",
@@ -43,15 +39,12 @@
     "Off": "Off",
     "Toggle Full Screen": "Toggle Full Screen",
     "Toggle Widgets Bar": "Toggle Widgets Bar",
-
     "Minimize": "Minimize",
     "Zoom": "Zoom",
     "Bring All to Front": "Bring All to Front",
-
     "Create Workspace": "Create Workspace",
     "Delete Workspace": "Delete Workspace",
     "Deleting workspace will also delete its contents.\n\nContinue?": "Deleting workspace will also delete its contents.\n\nContinue?",
-
     "Confirm Quit": "Confirm Quit",
     "Are you sure you want to quit Wave Terminal?": "Are you sure you want to quit Wave Terminal?",
     "Cancel": "Cancel",
@@ -61,18 +54,15 @@
     "Window has unsaved tabs, closing window will delete existing tabs.\n\nContinue?": "Window has unsaved tabs, closing window will delete existing tabs.\n\nContinue?",
     "Are you sure you want to close this tab?": "Are you sure you want to close this tab?",
     "Close Tab": "Close Tab",
-
     "There are currently no updates available.": "There are currently no updates available.",
     "Application Update": "Application Update",
     "Restart": "Restart",
     "Later": "Later",
     "A new version has been downloaded. Restart the application to apply the updates.": "A new version has been downloaded. Restart the application to apply the updates.",
-
     "Wave has detected a performance issue": "Wave has detected a performance issue",
     "Wave is running in ARM64 translation mode which may impact performance.\n\nRecommendation: Download the native ARM64 version from our website for optimal performance.": "Wave is running in ARM64 translation mode which may impact performance.\n\nRecommendation: Download the native ARM64 version from our website for optimal performance.",
     "Dismiss": "Dismiss",
     "Learn More": "Learn More",
-
     "Open-Source AI-Integrated Terminal": "Open-Source AI-Integrated Terminal",
     "Built for Seamless Workflows": "Built for Seamless Workflows",
     "Client Version {{version}}": "Client Version {{version}}",
@@ -81,7 +71,6 @@
     "Website": "Website",
     "Open Source": "Open Source",
     "Sponsor": "Sponsor",
-
     "Rename Tab": "Rename Tab",
     "Copy TabId": "Copy TabId",
     "Flag Tab": "Flag Tab",
@@ -98,7 +87,6 @@
     "Tab Bar Position": "Tab Bar Position",
     "Top": "Top",
     "Left": "Left",
-
     "Magnify Block": "Magnify Block",
     "Copy BlockId": "Copy BlockId",
     "Close Block": "Close Block",
@@ -112,7 +100,6 @@
     "Editor": "Editor",
     "Help": "Help",
     "Tips": "Tips",
-
     "Wave AI": "Wave AI",
     "Welcome to Wave AI": "Welcome to Wave AI",
     "Ask Wave AI anything...": "Ask Wave AI anything...",
@@ -121,7 +108,6 @@
     "Configure Modes": "Configure Modes",
     "More options": "More options",
     "Max Output Tokens": "Max Output Tokens",
-
     "Drop files here": "Drop files here",
     "Images, PDFs, and text/code files supported": "Images, PDFs, and text/code files supported",
     "Wave AI is your terminal assistant with context. I can read your terminal output, analyze widgets, access files, and help you solve problems faster.": "Wave AI is your terminal assistant with context. I can read your terminal output, analyze widgets, access files, and help you solve problems faster.",
@@ -141,7 +127,6 @@
     "An error occurred": "An error occurred",
     "{{count}} file rejected (unsupported type): {{names}}. Supported: images, PDFs, and text/code files.": "{{count}} file rejected (unsupported type): {{names}}. Supported: images, PDFs, and text/code files.",
     "{{count}} files rejected (unsupported type): {{names}}. Supported: images, PDFs, and text/code files.": "{{count}} files rejected (unsupported type): {{names}}. Supported: images, PDFs, and text/code files.",
-
     "Wave AI is free to use and provides integrated AI chat that can interact with your widgets, help you with code, analyze files, and assist with your terminal workflows.": "Wave AI is free to use and provides integrated AI chat that can interact with your widgets, help you with code, analyze files, and assist with your terminal workflows.",
     "Telemetry keeps Wave AI free": "Telemetry keeps Wave AI free",
     "To keep Wave AI free for everyone, we require a small amount of ": "To keep Wave AI free for everyone, we require a small amount of ",
@@ -153,18 +138,15 @@
     "Enabling...": "Enabling...",
     "Enable Telemetry and Continue": "Enable Telemetry and Continue",
     "Privacy Policy": "Privacy Policy",
-
     "Context": "Context",
     "Widget Access {{state}}": "Widget Access {{state}}",
     "ON": "ON",
     "OFF": "OFF",
-
     "Continue...": "Continue...",
     "What would you like to build...": "What would you like to build...",
     "Attach files": "Attach files",
     "Stop Response": "Stop Response",
     "Send message (Enter)": "Send message (Enter)",
-
     " (premium)": " (premium)",
     "Incompatible Modes": "Incompatible Modes",
     "Current": "Current",
@@ -177,26 +159,22 @@
     "No Tools Support": "No Tools Support",
     "(Start a New Chat to Switch)": "(Start a New Chat to Switch)",
     "(enable telemetry to unlock Wave AI Cloud)": "(enable telemetry to unlock Wave AI Cloud)",
-
     "24k": "24k",
     "64k (Pro)": "64k (Pro)",
     "1k (Dev Testing)": "1k (Dev Testing)",
     "4k": "4k",
     "16k (Pro)": "16k (Pro)",
     "Hide Wave AI": "Hide Wave AI",
-
     "Image": "Image",
     "PDF": "PDF",
     "Text file": "Text file",
     "{{type}} \"{{name}}\" is too large ({{size}}). Maximum size is {{max}}.": "{{type}} \"{{name}}\" is too large ({{size}}). Maximum size is {{max}}.",
-
     "Cannot add directories to Wave AI. Please select a file.": "Cannot add directories to Wave AI. Please select a file.",
     "File not found: {{name}}": "File not found: {{name}}",
     "Failed to read file: {{name}}": "Failed to read file: {{name}}",
     "File type not supported: {{name}}. Supported: images, PDFs, and text/code files.": "File type not supported: {{name}}. Supported: images, PDFs, and text/code files.",
     "Failed to add file: {{msg}}": "Failed to add file: {{msg}}",
     "Failed to load chat. Starting new chat...": "Failed to load chat. Starting new chat...",
-
     "{{used}}/{{limit}} Premium Used": "{{used}}/{{limit}} Premium Used",
     "Resets in {{time}}": "Resets in {{time}}",
     "{{used}}/{{limit}} Premium": "{{used}}/{{limit}} Premium",
@@ -206,17 +184,13 @@
     "soon": "soon",
     "{{hours}}h": "{{hours}}h",
     "{{minutes}}m": "{{minutes}}m",
-
     "New: BYOK & Local AI Support": "New: BYOK & Local AI Support",
     "Wave AI now supports bring-your-own-key (BYOK) with OpenAI, Google Gemini, Azure, and OpenRouter, plus local models via Ollama, LM Studio, and other OpenAI-compatible providers.": "Wave AI now supports bring-your-own-key (BYOK) with OpenAI, Google Gemini, Azure, and OpenRouter, plus local models via Ollama, LM Studio, and other OpenAI-compatible providers.",
     "Configure AI Modes": "Configure AI Modes",
     "View Docs": "View Docs",
-
     "Waiting for Tool Approvals...": "Waiting for Tool Approvals...",
     "AI is thinking...": "AI is thinking...",
-    "File": "File",
     "(no text content)": "(no text content)",
-
     "Approve": "Approve",
     "Approve All ({{count}})": "Approve All ({{count}})",
     "Deny": "Deny",
@@ -227,7 +201,6 @@
     "Restore backup file": "Restore backup file",
     "Show Diff": "Show Diff",
     "Open in diff viewer": "Open in diff viewer",
-
     "Backup Successfully Restored": "Backup Successfully Restored",
     "The file ": "The file ",
     " has been restored to its previous state.": " has been restored to its previous state.",
@@ -239,11 +212,9 @@
     "This will restore ": "This will restore ",
     "to its state before this edit was made": "to its state before this edit was made",
     "Any changes made by this edit and subsequent edits will be lost.": "Any changes made by this edit and subsequent edits will be lost.",
-
     "Good Response": "Good Response",
     "Bad Response": "Bad Response",
     "Copy Message": "Copy Message",
-
     "Local": "Local",
     "Remote": "Remote",
     "Git Bash": "Git Bash",
@@ -257,5 +228,28 @@
     "Unsaved changes": "Unsaved changes",
     "General": "General",
     "Connections": "Connections",
-    "Wave AI Modes": "Wave AI Modes"
+    "Wave AI Modes": "Wave AI Modes",
+    "Reconnect to {{connection}}": "Reconnect to {{connection}}",
+    "Disconnect {{connection}}": "Disconnect {{connection}}",
+    "{{connection}} (New Connection)": "{{connection}} (New Connection)",
+    "Connect to (username@host)...": "Connect to (username@host)...",
+    "Connected to Git Bash": "Connected to Git Bash",
+    "Connected to {{connection}}": "Connected to {{connection}}",
+    "Connecting to {{connection}}": "Connecting to {{connection}}",
+    "Error connecting to {{connection}}": "Error connecting to {{connection}}",
+    "Disconnected from {{connection}}": "Disconnected from {{connection}}",
+    "Connection degraded: {{connection}}": "Connection degraded: {{connection}}",
+    "Connection stalled: {{connection}}": "Connection stalled: {{connection}}",
+    "wsh is not installed for this connection": "wsh is not installed for this connection",
+    "{{seconds}}s": "{{seconds}}s",
+    "{{hours}}h{{minutes}}m": "{{hours}}h{{minutes}}m",
+    "more than a day": "more than a day",
+    "Connection Stalled": "Connection Stalled",
+    "Connection to \"{{connName}}\" is stalled": "Connection to \"{{connName}}\" is stalled",
+    " (no activity for {{elapsedTime}})": " (no activity for {{elapsedTime}})",
+    "Disconnected from \"{{connName}}\"": "Disconnected from \"{{connName}}\"",
+    "Connecting to \"{{connName}}\"...": "Connecting to \"{{connName}}\"...",
+    "error: {{error}}": "error: {{error}}",
+    "unable to use wsh: {{error}}": "unable to use wsh: {{error}}",
+    "always disable wsh": "always disable wsh"
 }
