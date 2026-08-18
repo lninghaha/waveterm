@@ -1,6 +1,7 @@
 // Copyright 2025, Command Line Inc.
 // SPDX-License-Identifier: Apache-2.0
 
+import { applyLocaleFromSettings } from "@/app/i18n/core";
 import { RpcApi } from "@/app/store/wshclientapi";
 import { TabRpcClient } from "@/app/store/wshrpcutil";
 import {
@@ -64,7 +65,9 @@ function initGlobalWaveEventSubs(initOpts: WaveInitOpts) {
         eventType: "config",
         handler: (event) => {
             // console.log("config wave event handler", event);
-            globalStore.set(atoms.fullConfigAtom, event.data.fullconfig);
+            const fullConfig = event.data.fullconfig;
+            applyLocaleFromSettings(fullConfig?.settings);
+            globalStore.set(atoms.fullConfigAtom, fullConfig);
         },
     });
     waveEventSubscribeSingle({

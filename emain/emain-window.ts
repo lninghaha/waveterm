@@ -1,6 +1,7 @@
 // Copyright 2026, Command Line Inc.
 // SPDX-License-Identifier: Apache-2.0
 
+import { t } from "@/app/i18n/core";
 import { ClientService, ObjectService, WindowService, WorkspaceService } from "@/app/store/services";
 import { waveEventSubscribeSingle } from "@/app/store/wps";
 import { RpcApi } from "@/app/store/wshclientapi";
@@ -314,10 +315,11 @@ export class WaveBrowserWindow extends BaseWindow {
                         if (isNonEmptyUnsavedWorkspace(workspace)) {
                             const choice = dialog.showMessageBoxSync(this, {
                                 type: "question",
-                                buttons: ["Cancel", "Close Window"],
-                                title: "Confirm",
-                                message:
-                                    "Window has unsaved tabs, closing window will delete existing tabs.\n\nContinue?",
+                                buttons: [t("Cancel"), t("Close Window")],
+                                title: t("Confirm"),
+                                message: t(
+                                    "Window has unsaved tabs, closing window will delete existing tabs.\n\nContinue?"
+                                ),
                             });
                             if (choice === 0) {
                                 return;
@@ -775,9 +777,9 @@ ipcMain.handle("close-tab", async (event, workspaceId: string, tabId: string, co
             type: "question",
             defaultId: 1, // Enter activates "Close Tab"
             cancelId: 0, // Esc activates "Cancel"
-            buttons: ["Cancel", "Close Tab"],
-            title: "Confirm",
-            message: "Are you sure you want to close this tab?",
+            buttons: [t("Cancel"), t("Close Tab")],
+            title: t("Confirm"),
+            message: t("Are you sure you want to close this tab?"),
         });
         if (choice === 0) {
             return false;
@@ -825,9 +827,9 @@ ipcMain.on("delete-workspace", (event, workspaceId) => {
 
         const choice = dialog.showMessageBoxSync(this, {
             type: "question",
-            buttons: ["Cancel", "Delete Workspace"],
-            title: "Confirm",
-            message: `Deleting workspace will also delete its contents.\n\nContinue?`,
+            buttons: [t("Cancel"), t("Delete Workspace")],
+            title: t("Confirm"),
+            message: t("Deleting workspace will also delete its contents.\n\nContinue?"),
         });
         if (choice === 0) {
             console.log("user cancelled workspace delete", workspaceId, ww?.waveWindowId);

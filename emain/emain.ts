@@ -1,6 +1,7 @@
 // Copyright 2025, Command Line Inc.
 // SPDX-License-Identifier: Apache-2.0
 
+import { applyLocaleFromSettings, t } from "@/app/i18n/core";
 import { RpcApi } from "@/app/store/wshclientapi";
 import * as electron from "electron";
 import { focusedBuilderWindow, getAllBuilderWindows } from "emain/emain-builder";
@@ -277,9 +278,9 @@ electronApp.on("before-quit", (e) => {
         e.preventDefault();
         const choice = electron.dialog.showMessageBoxSync(null, {
             type: "question",
-            buttons: ["Cancel", "Quit"],
-            title: "Confirm Quit",
-            message: "Are you sure you want to quit Wave Terminal?",
+            buttons: [t("Cancel"), t("Quit")],
+            title: t("Confirm Quit"),
+            message: t("Are you sure you want to quit Wave Terminal?"),
             defaultId: 0,
             cancelId: 0,
         });
@@ -374,6 +375,7 @@ globalEvents.on("windows-updated", () => {
 async function appMain() {
     // Set disableHardwareAcceleration as early as possible, if required.
     const launchSettings = getLaunchSettings();
+    applyLocaleFromSettings(launchSettings);
     if (launchSettings?.["window:disablehardwareacceleration"]) {
         console.log("disabling hardware acceleration, per launch settings");
         electronApp.disableHardwareAcceleration();
@@ -410,6 +412,7 @@ async function appMain() {
         console.log("error initializing wshrpc", e);
     }
     const fullConfig = await RpcApi.GetFullConfigCommand(ElectronWshClient);
+    applyLocaleFromSettings(fullConfig?.settings);
     checkIfRunningUnderARM64Translation(fullConfig);
     if (fullConfig?.settings?.["app:confirmquit"] != null) {
         confirmQuit = fullConfig.settings["app:confirmquit"];
