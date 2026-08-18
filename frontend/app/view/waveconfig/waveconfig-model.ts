@@ -2,6 +2,7 @@
 // SPDX-License-Identifier: Apache-2.0
 
 import { BlockNodeModel } from "@/app/block/blocktypes";
+import { t } from "@/app/i18n/core";
 import { globalStore } from "@/app/store/jotaiStore";
 import type { TabModel } from "@/app/store/tab-model";
 import { makeORef } from "@/app/store/wos";
@@ -58,46 +59,46 @@ function validateWaveAiJson(parsed: any): ValidationResult {
 function makeConfigFiles(isWindows: boolean): ConfigFile[] {
     return [
         {
-            name: "General",
+            name: t("General"),
             path: "settings.json",
             language: "json",
             docsUrl: "https://docs.waveterm.dev/config",
             hasJsonView: true,
         },
         {
-            name: "Connections",
+            name: t("Connections"),
             path: "connections.json",
             language: "json",
             docsUrl: "https://docs.waveterm.dev/connections",
-            description: isWindows ? "SSH hosts and WSL distros" : "SSH hosts",
+            description: isWindows ? t("SSH hosts and WSL distros") : t("SSH hosts"),
             hasJsonView: true,
         },
         {
-            name: "Sidebar Widgets",
+            name: t("Sidebar Widgets"),
             path: "widgets.json",
             language: "json",
             docsUrl: "https://docs.waveterm.dev/customwidgets",
             hasJsonView: true,
         },
         {
-            name: "Wave AI Modes",
+            name: t("Wave AI Modes"),
             path: "waveai.json",
             language: "json",
-            description: "Local models and BYOK",
+            description: t("Local models and BYOK"),
             docsUrl: "https://docs.waveterm.dev/waveai-modes",
             validator: validateWaveAiJson,
             hasJsonView: true,
             // visualComponent: WaveAIVisualContent,
         },
         {
-            name: "Tab Backgrounds",
+            name: t("Tab Backgrounds"),
             path: "backgrounds.json",
             language: "json",
             docsUrl: "https://docs.waveterm.dev/tab-backgrounds",
             hasJsonView: true,
         },
         {
-            name: "Secrets",
+            name: t("Secrets"),
             path: "secrets",
             isSecrets: true,
             hasJsonView: false,
@@ -106,24 +107,26 @@ function makeConfigFiles(isWindows: boolean): ConfigFile[] {
     ];
 }
 
-const deprecatedConfigFiles: ConfigFile[] = [
-    {
-        name: "Presets",
-        path: "presets.json",
-        language: "json",
-        deprecated: true,
-        hasJsonView: true,
-    },
-    {
-        name: "AI Presets",
-        path: "presets/ai.json",
-        language: "json",
-        deprecated: true,
-        docsUrl: "https://docs.waveterm.dev/ai-presets",
-        validator: validateAiJson,
-        hasJsonView: true,
-    },
-];
+function makeDeprecatedConfigFiles(): ConfigFile[] {
+    return [
+        {
+            name: t("Presets"),
+            path: "presets.json",
+            language: "json",
+            deprecated: true,
+            hasJsonView: true,
+        },
+        {
+            name: t("AI Presets"),
+            path: "presets/ai.json",
+            language: "json",
+            deprecated: true,
+            docsUrl: "https://docs.waveterm.dev/ai-presets",
+            validator: validateAiJson,
+            hasJsonView: true,
+        },
+    ];
+}
 
 export class WaveConfigViewModel implements ViewModel {
     blockId: string;
@@ -251,7 +254,7 @@ export class WaveConfigViewModel implements ViewModel {
 
     getDeprecatedConfigFiles(): ConfigFile[] {
         const presetsJsonExists = globalStore.get(this.presetsJsonExistsAtom);
-        return deprecatedConfigFiles.filter((f) => {
+        return makeDeprecatedConfigFiles().filter((f) => {
             if (f.path === "presets.json") {
                 return presetsJsonExists;
             }
@@ -267,7 +270,7 @@ export class WaveConfigViewModel implements ViewModel {
         if (!this.hasChanges()) {
             return true;
         }
-        return window.confirm("You have unsaved changes. Discard and continue?");
+        return window.confirm(t("You have unsaved changes. Discard and continue?"));
     }
 
     discardChanges() {
@@ -317,7 +320,10 @@ export class WaveConfigViewModel implements ViewModel {
                 meta: { file: file.path },
             });
         } catch (err) {
-            globalStore.set(this.errorMessageAtom, `Failed to load ${file.name}: ${err.message || String(err)}`);
+            globalStore.set(
+                this.errorMessageAtom,
+                t("Failed to load {{name}}: {{error}}", { name: file.name, error: err.message || String(err) })
+            );
             globalStore.set(this.fileContentAtom, "");
             globalStore.set(this.originalContentAtom, "");
         } finally {
@@ -348,7 +354,10 @@ export class WaveConfigViewModel implements ViewModel {
             } catch (err) {
                 globalStore.set(
                     this.errorMessageAtom,
-                    `Failed to save ${selectedFile.name}: ${err.message || String(err)}`
+                    t("Failed to save {{name}}: {{error}}", {
+                        name: selectedFile.name,
+                        error: err.message || String(err),
+                    })
                 );
             } finally {
                 globalStore.set(this.isSavingAtom, false);
@@ -360,7 +369,10 @@ export class WaveConfigViewModel implements ViewModel {
             const parsed = JSON.parse(fileContent);
 
             if (typeof parsed !== "object" || parsed == null || Array.isArray(parsed)) {
-                globalStore.set(this.validationErrorAtom, "JSON must be an object, not an array, primitive, or null");
+                globalStore.set(
+                    this.validationErrorAtom,
+                    t("JSON must be an object, not an array, primitive, or null")
+                );
                 return;
             }
 
@@ -390,13 +402,19 @@ export class WaveConfigViewModel implements ViewModel {
             } catch (err) {
                 globalStore.set(
                     this.errorMessageAtom,
-                    `Failed to save ${selectedFile.name}: ${err.message || String(err)}`
+                    t("Failed to save {{name}}: {{error}}", {
+                        name: selectedFile.name,
+                        error: err.message || String(err),
+                    })
                 );
             } finally {
                 globalStore.set(this.isSavingAtom, false);
             }
         } catch (err) {
-            globalStore.set(this.validationErrorAtom, `Invalid JSON: ${err.message || String(err)}`);
+            globalStore.set(
+                this.validationErrorAtom,
+                t("Invalid JSON: {{error}}", { error: err.message || String(err) })
+            );
         }
     }
 
@@ -414,13 +432,16 @@ export class WaveConfigViewModel implements ViewModel {
             if (backend === "basic_text" || backend === "unknown") {
                 globalStore.set(
                     this.storageBackendErrorAtom,
-                    "No appropriate secret manager found. Cannot manage secrets securely."
+                    t("No appropriate secret manager found. Cannot manage secrets securely.")
                 );
             } else {
                 globalStore.set(this.storageBackendErrorAtom, null);
             }
         } catch (error) {
-            globalStore.set(this.storageBackendErrorAtom, `Error checking storage backend: ${error.message}`);
+            globalStore.set(
+                this.storageBackendErrorAtom,
+                t("Error checking storage backend: {{error}}", { error: error.message })
+            );
         }
     }
 
@@ -432,7 +453,7 @@ export class WaveConfigViewModel implements ViewModel {
             const names = await this.env.rpc.GetSecretsNamesCommand(TabRpcClient);
             globalStore.set(this.secretNamesAtom, names || []);
         } catch (error) {
-            globalStore.set(this.errorMessageAtom, `Failed to load secrets: ${error.message}`);
+            globalStore.set(this.errorMessageAtom, t("Failed to load secrets: {{error}}", { error: error.message }));
         } finally {
             globalStore.set(this.isLoadingAtom, false);
         }
@@ -467,10 +488,10 @@ export class WaveConfigViewModel implements ViewModel {
                 globalStore.set(this.secretValueAtom, value);
                 globalStore.set(this.secretShownAtom, true);
             } else {
-                globalStore.set(this.errorMessageAtom, `Secret not found: ${selectedSecret}`);
+                globalStore.set(this.errorMessageAtom, t("Secret not found: {{name}}", { name: selectedSecret }));
             }
         } catch (error) {
-            globalStore.set(this.errorMessageAtom, `Failed to load secret: ${error.message}`);
+            globalStore.set(this.errorMessageAtom, t("Failed to load secret: {{error}}", { error: error.message }));
         } finally {
             globalStore.set(this.isLoadingAtom, false);
         }
@@ -501,7 +522,7 @@ export class WaveConfigViewModel implements ViewModel {
             );
             this.closeSecretView();
         } catch (error) {
-            globalStore.set(this.errorMessageAtom, `Failed to save secret: ${error.message}`);
+            globalStore.set(this.errorMessageAtom, t("Failed to save secret: {{error}}", { error: error.message }));
         } finally {
             globalStore.set(this.isLoadingAtom, false);
         }
@@ -522,7 +543,7 @@ export class WaveConfigViewModel implements ViewModel {
             this.closeSecretView();
             await this.refreshSecrets();
         } catch (error) {
-            globalStore.set(this.errorMessageAtom, `Failed to delete secret: ${error.message}`);
+            globalStore.set(this.errorMessageAtom, t("Failed to delete secret: {{error}}", { error: error.message }));
         } finally {
             globalStore.set(this.isLoadingAtom, false);
         }
@@ -547,21 +568,21 @@ export class WaveConfigViewModel implements ViewModel {
         const value = globalStore.get(this.newSecretValueAtom);
 
         if (!name) {
-            globalStore.set(this.errorMessageAtom, "Secret name cannot be empty");
+            globalStore.set(this.errorMessageAtom, t("Secret name cannot be empty"));
             return;
         }
 
         if (!SecretNameRegex.test(name)) {
             globalStore.set(
                 this.errorMessageAtom,
-                "Invalid secret name: must start with a letter and contain only letters, numbers, and underscores"
+                t("Invalid secret name: must start with a letter and contain only letters, numbers, and underscores")
             );
             return;
         }
 
         const existingNames = globalStore.get(this.secretNamesAtom);
         if (existingNames.includes(name)) {
-            globalStore.set(this.errorMessageAtom, `Secret "${name}" already exists`);
+            globalStore.set(this.errorMessageAtom, t('Secret "{{name}}" already exists', { name }));
             return;
         }
 
@@ -585,7 +606,7 @@ export class WaveConfigViewModel implements ViewModel {
             globalStore.set(this.newSecretValueAtom, "");
             await this.refreshSecrets();
         } catch (error) {
-            globalStore.set(this.errorMessageAtom, `Failed to add secret: ${error.message}`);
+            globalStore.set(this.errorMessageAtom, t("Failed to add secret: {{error}}", { error: error.message }));
         } finally {
             globalStore.set(this.isLoadingAtom, false);
         }
